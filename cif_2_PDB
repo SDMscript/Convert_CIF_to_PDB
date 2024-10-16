@@ -12,8 +12,6 @@ import argparse
 #test 
 
 ###------FUNCTION--------
-
-
 #### 1. LOAD CIF AND EXTRACT DATA
 
 # #load structures
