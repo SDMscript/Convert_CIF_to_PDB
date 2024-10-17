@@ -71,7 +71,7 @@ def domain(fname,segi):
     return segi_chains, coorddata_chains   
 ##----
 #2. write PDB
-def writePDB(coord_dataChains):
+def writePDB(coord_dataChains, outname):
     pdbs = list(set(coord_dataChains['molID']))
     for pdb in pdbs:
         coords=coord_dataChains[coord_dataChains['molID']==pdb]
@@ -85,8 +85,8 @@ def writePDB(coord_dataChains):
             line = "{:6s}{:5d}{:>4s}{:>5s} {:>1s}{:4d}{:1s}   {:8.3f}{:8.3f}{:8.3f}{:6.2f}{:6.2f}      {:3s}".format(coords.iloc[i,0],int(coords.iloc[i,1]),coords.iloc[i,3],coords.iloc[i,5],coords.iloc[i,6],int(coords.iloc[i,8]),' ',float(coords.iloc[i,10]),float(coords.iloc[i,11]),float(coords.iloc[i,12]), float(coords.iloc[i,13]),float(coords.iloc[i,14]),coords.iloc[i,15])
             pdb_txt.append(line+"\n")
             #print (line)
-        fname = pdb+'_RNA.pdb' 
-        outfile = os.path.join(foldername,fname)
+        fname = pdb+'.pdb' 
+        outfile = os.path.join(outname,fname)
         with open(outfile,'w') as f:
                 for l in pdb_txt:
                 #    for word in l:
@@ -101,11 +101,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('-f','--folder', help='Path of folder with CIF files to convert to PDB', required=True)
     parser.add_argument('-s','--segi', help='segment keywords to include. For example : \'16S\' for 16S rRNA or 16S ribosomal RNA search. Input can me a comma-separated list or string.', required=True)
+    parser.add_argument('-o','--outfolder', help='Path of folder to save PDB files. Optional. Files will be saved in the source location if output folder is not provided.', required=False)
+    
     args = vars(parser.parse_args())
     print(args)
     foldername=args['folder']
+    if args['outfolder']:
+        outname= args['outfolder']
+    else:
+        outname=foldername
     segi=args['segi']
     pathloc = os.path.abspath(foldername)
     PDB_ssu_chains , coord_dataChains= domain(os.path.abspath(foldername),segi)
 
-    writePDB(coord_dataChains)
+    writePDB(coord_dataChains, outname)
