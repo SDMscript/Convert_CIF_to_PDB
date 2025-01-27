@@ -43,9 +43,10 @@ def domain(fname,segi):
                                         'label_comp_id', 'auth_asym_id', 'label_entity_id', 'auth_seq_id', 'pdbx_PDB_ins_code', 
                                         'Cartn_x', 'Cartn_y', 'Cartn_z','occupancy',  'B_iso_or_equiv'])
         for s in segi:
+        #    print (s)
             joindf_s=pd.DataFrame()
             t = entitydf[entitydf['entity.description'].str.contains(s)]       
-            print(t)
+           # print(t)
             joindf_s = pd.merge(structdf,t,on='id')
             joindf_s['segi']=s
             joindf = pd.concat([joindf, joindf_s])
@@ -61,7 +62,7 @@ def domain(fname,segi):
             #molidchain =''
             #molidchain = structure_id+c
             seg = joindf[joindf['struct_ref_seq.pdbx_strand_id'] ==c]['segi'].unique()[0]
-            print (seg)
+        #    print (seg)
             coordata_chains_c['segi'] = seg
             #coordata_chains_c['molID_chain'] = molidchain
             coordata_chains_c['molID'] = structure_id
@@ -75,7 +76,7 @@ def writePDB(coord_dataChains, outname):
     pdbs = list(set(coord_dataChains['molID']))
     for pdb in pdbs:
         coords=coord_dataChains[coord_dataChains['molID']==pdb]
-        print(coords.head())
+        #print(coords.head())
         
         pdb_txt=[]
         for i in range(coords.shape[0]):
@@ -104,13 +105,14 @@ if __name__ == "__main__":
     parser.add_argument('-o','--outfolder', help='Path of folder to save PDB files. Optional. Files will be saved in the source location if output folder is not provided.', required=False)
     
     args = vars(parser.parse_args())
-    print(args)
+    #print(args)
     foldername=args['folder']
     if args['outfolder']:
         outname= args['outfolder']
     else:
         outname=foldername
-    segi=args['segi']
+    segi=list(args['segi'].split(","))
+    print (segi[0])
     pathloc = os.path.abspath(foldername)
     PDB_ssu_chains , coord_dataChains= domain(os.path.abspath(foldername),segi)
 
