@@ -101,7 +101,7 @@ if __name__ == "__main__":
     ###------
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('-f','--folder', help='Path of folder with CIF files to convert to PDB', required=True)
-    parser.add_argument('-s','--segi', help='segment keywords to include. For example : \'16S\' for 16S rRNA or 16S ribosomal RNA search. Input can me a comma-separated list or string.', required=True)
+    parser.add_argument('-s','--segi', help='segment keywords to include. For example : \'16S\' for 16S rRNA or 16S ribosomal RNA search. Input can me a comma-separated string (ex. 16S,tRNA).', required=True)
     parser.add_argument('-o','--outfolder', help='Path of folder to save PDB files. Optional. Files will be saved in the source location if output folder is not provided.', required=False)
     
     args = vars(parser.parse_args())
