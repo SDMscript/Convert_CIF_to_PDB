@@ -25,7 +25,7 @@ def domain(fname,segi):
     #print(pdb_files)
     coorddata_chains=pd.DataFrame()
     for fileName in pdb_files:
-        print (fileName)
+       # print (fileName)
         chains =[]
         structure_id = fileName.rsplit('/', 1)[1][:-4]
         joindf=pd.DataFrame()
@@ -77,6 +77,7 @@ def domain(fname,segi):
            # print (structure_id, c)
             segi_chains.append(structure_id+c)
             coordata_chains_c= coorddata[coorddata['auth_chain']   == c]
+            coordata_chains_c=coordata_chains_c[coordata_chains_c['group_PDB']=='ATOM']
            # print(coordata_chains_c, structure_id)
             #molidchain =''
             #molidchain = structure_id+c
@@ -95,6 +96,7 @@ def writePDB(coord_dataChains, outname):
     pdbs = list(set(coord_dataChains['molID']))
     for pdb in pdbs:
         coords=coord_dataChains[coord_dataChains['molID']==pdb]
+        coords=coords[coords['atom_name'] != 'MG'].reset_index(drop=True)
         #print(coords.head())
         """         # Create a PandasPdb object
         ppdb = PandasPdb()
