@@ -25,8 +25,12 @@ To use this script, follow these steps:
 
 Clone the repository or download the cif_2_pdb.py script to your local machine.
 Open a terminal and navigate to the directory containing the cif_2_pdb.py script.
+
 Run the script using the following command:
+
 python cif_2_pdb.py --folder <folder_with_input_cif_files> --output <folder_with_output_pdb_files> [--segi <segments_in_output>]
+
+
 Arguments
 
 --folder: Path to the folder containing input CIF files.
