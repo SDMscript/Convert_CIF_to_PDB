@@ -30,17 +30,25 @@ python cif_2_pdb.py --folder <folder_with_input_cif_files> --output <folder_with
 Arguments
 
 --folder: Path to the folder containing input CIF files.
+
 --output: Path to the folder where output PDB files will be saved.
+
 --segi: (Optional) Segments in output PDB files. this can be a single keyword ("ubiquitin") or multiple comma separated keywords "mRNA,tRNA"
+
+
 Examples
 
 1. python cif_2_pdb.py --folder input_cif_files/ --output output_pdb_files/ --segi HAEMAGGLUTININ
 2. python cif_2_pdb.py --f ./ --o ./ --segi "16S, mRNA"
+
    
 Additional Information
 
 The script uses the BioPython library to handle the conversion process.
+
 Warnings are suppressed to ensure a clean output, but you can remove the warnings.filterwarnings('ignore') line if you want to see the warnings.
+
+
 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
