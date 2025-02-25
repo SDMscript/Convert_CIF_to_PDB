@@ -1,7 +1,11 @@
 ````markdown name=README.md
 # CIF to PDB Converter
 
-`cif_2_pdb.py` is a Python script that converts CIF (Crystallographic Information File) files to PDB (Protein Data Bank) format. This script is particularly useful for structural biologists and bioinformaticians who need to work with PDB files for various computational analyses.
+`cif_2_pdb.py` is a Python script that converts CIF (Crystallographic Information File) files to PDB (Protein Data Bank) format.
+
+This script converts multi chain CIF files to PDB format and allows for segment keyword search.
+
+CODE WILL ONLY WRITE CHAINS WITH SINGLE CHARACTER IDs. ALL OTHER CHAINS WITH 2-LETTER IDs WILL BE IGNORED (NOT INCLUDED) IN THE OUTPUT. This is because the traditional PDB format accepts a single letter chain ID. 
 
 ## Prerequisites
 
