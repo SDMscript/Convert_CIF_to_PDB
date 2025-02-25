@@ -41,12 +41,14 @@ python cif_2_pdb.py --folder <folder_with_input_cif_files> --output <folder_with
 
 - `--folder`: Path to the folder containing input CIF files.
 - `--output`: Path to the folder where output PDB files will be saved.
-- `--segi`: (Optional) Segments in output PDB files.
+- `--segi`: (Optional) Segments to include in output PDB files. This is a keyword search, should be 4 characters or less; if the keyword is longer, it will be truncated to first 4 characters (ubiquitin = ubiq). Segi is listed as the last column in the PDB output.
 
-### Example
+### Examples
 
 ```bash
-python cif_2_pdb.py --folder input_cif_files/ --output output_pdb_files/ --segi A
+python cif_2_pdb.py --folder input_cif_files/ --output output_pdb_files/ --segi ubiquitin
+
+python cif_2_pdb.py --folder input_cif_files/ --output output_pdb_files/ --segi "16S, 23S"
 ```
 
 ## Additional Information
