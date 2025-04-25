@@ -6,7 +6,7 @@ from Bio.PDB.MMCIF2Dict import MMCIF2Dict
 import warnings
 import os
 import argparse
-from biopandas.pdb import PandasPdb
+
 
 warnings.filterwarnings('ignore')
 
@@ -136,9 +136,9 @@ if __name__ == "__main__":
     pdb_files = glob(os.path.abspath(foldername) + '/*.cif')
 
     for fileName in pdb_files:
-        PDB_ssu_chains, coord_dataChains = domain(fileName, segi)
-        print(len(PDB_ssu_chains), len(coord_dataChains))
-        if len(PDB_ssu_chains) > 0 and len(coord_dataChains) > 0:
+        PDB_seg_chains, coord_dataChains = domain(fileName, segi)
+        print(len( PDB_seg_chains), len(coord_dataChains))
+        if len( PDB_seg_chains) > 0 and len(coord_dataChains) > 0:
             writePDB(coord_dataChains, outname)
         else:
             print(fileName + ' skipped \n')
